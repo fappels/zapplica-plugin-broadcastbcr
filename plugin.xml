@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="zapplica-plugin-broadcastbcr" version="1.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>BroadcastBCR</name>
+	<description>read data from broadcastreceiver</description>
+	<author>francis.appels@z-application.com</author>
+	<keywords>BroadcastReceiver,barcode reader, RFID</keywords>
+	<license>Apache License 2.0</license>
+	<js-module name="BroadcastBCR" src="www/BroadcastBCR.js">
+		<clobbers target="cordova.plugins.BroadcastBCR" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="BroadcastBCR">
+				<param name="android-package" value="net.zapplica.plugin.broadcastbcr.BroadcastBCR" />
+			</feature>
+		</config-file>
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			
+		</config-file>
+		<source-file src="src/android/net/zapplica/plugin/broadcastbcr/BroadcastBCR.java" target-dir="src/net/zapplica/plugin/broadcastbcr/" />
+	</platform>
+</plugin>
