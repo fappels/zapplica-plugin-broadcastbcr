@@ -37,6 +37,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 import android.os.Bundle;
+import android.os.Build;
 
 /**
  * @author francis.appels@yahoo.com
@@ -127,7 +128,11 @@ public class BroadcastBCR extends CordovaPlugin {
                     mBroadcastName = broadcastName;
                 }
                 filter.addAction(mBroadcastName);
-                cordova.getActivity().registerReceiver(mCodeScanReceiver, filter);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    cordova.getActivity().registerReceiver(mCodeScanReceiver, filter, Context.RECEIVER_EXPORTED);
+                } else {
+                    cordova.getActivity().registerReceiver(mCodeScanReceiver, filter);
+                }
                 this.bCodeScanReceiverRegistered = true;
             }
             this.setState(STATE_READY);
